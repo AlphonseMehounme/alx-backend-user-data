@@ -25,6 +25,7 @@ class Auth:
         """if path not in excluded_paths:
             return True"""
         for pat in excluded_paths:
+            pat = r'^' + pat
             if re.search(pat, path):
                 return False
         return True
