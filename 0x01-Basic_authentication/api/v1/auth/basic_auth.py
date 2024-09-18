@@ -46,7 +46,8 @@ class BasicAuth(Auth):
         decoded = decoded_base64_authorization_header
         if decoded is None or type(decoded) != str or ':' not in decoded:
             return (None, None)
-        credentials = decoded.split(':')
+        pos = decoded.find(":")
+        credentials = [decoded[:pos], decoded[pos + 1:]]
         return (credentials[0], credentials[1])
 
     def user_object_from_credentials(self, user_email: str, user_pwd:
