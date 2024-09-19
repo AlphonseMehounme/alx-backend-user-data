@@ -24,6 +24,8 @@ class Auth:
         if path[-1] is not '/':
             path = path + '/'
         for pat in excluded_paths:
+            if pat[-1] == "*":
+                pat = pat[:-1]
             if re.search(pat, path):
                 return False
         return True
