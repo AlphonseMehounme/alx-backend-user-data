@@ -40,7 +40,7 @@ class SessionExpAuth(SessionAuth):
             return None
         if self.session_duration <= 0:
             return session_dict['user_id']
-        created_at = session_dict['created_at']
+        created_at = session_dict.get['created_at']
         if created_at is None:
             return None
         if (created_at + timedelta(seconds=self.session_duration) <
