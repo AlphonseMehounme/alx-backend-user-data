@@ -2,7 +2,7 @@
 """
 UserSession model Module
 """
-from models.nase import Base
+from models.base import Base
 
 
 class UserSession(Base):
