@@ -16,6 +16,8 @@ class SessionDBAuth(SessionExpAuth):
         """
         Create new session
         """
+        if user_id is None:
+            return None
         session_id = super().create_session(user_id)
         usersession = UserSession(user_id=user_id, session_id=session_id)
         usersession.save()
@@ -28,7 +30,7 @@ class SessionDBAuth(SessionExpAuth):
         if session_id is None:
             return None
         usersession = UserSession.search({'session_id': session_id})
-        if usersession is None:
+        if len(usersession) == 0:
             return None
         if self.session_duration <= 0:
             return usersession[0].user_id
@@ -47,7 +49,7 @@ class SessionDBAuth(SessionExpAuth):
         """
         session_id = self.session_cookie(request)
         usersession = UserSession.search({'session_id': session_id})
-        if usersession is None:
+        if len(usersession) == 0:
             return False
-        usersession.remove()
+        usersession[0].remove()
         return True
