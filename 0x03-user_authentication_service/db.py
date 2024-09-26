@@ -33,7 +33,8 @@ class DB:
         """
         Add user
         """
-        user = User(email=user, hashed_password=hashed_password)
-        session = self._session()
+        user = User(email=email, hashed_password=hashed_password)
+        session = Session()
         session.add(user)
+        self._session.commit()
         return user
