@@ -38,8 +38,14 @@ class DB:
         session.add(user)
         self._session.commit()
         return user
-
-   def  find_user_by(self, att: dict):
+    
+    def  find_user_by(self, att: dict):
        """
        Find user
        """
+
+    def update_user():
+        """
+        Update user
+        """
+        return None
